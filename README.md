@@ -1,27 +1,40 @@
-**Titulo: Inventario Web**
+# Titulo: Inventario Web
 
-**Objetivo:**
+## Objetivo
 
-- cubrir requisitos de movimiento de inventario.
-- el alcanze es de uno de los sectores de una estación de servicio.
-- sector playa de liquidos
-- productos: lubricantes y productos de limpieza vehicular básicos.
+Desarrollar un CRUD básico de productos con localStorage para gestionar movimientos de inventario
 
-_movimientos:_
+## Alcance
 
-- carga de producto
-- baja de producto
-- stock inicial
-- stock final
-- precio de producto
+El proyecto está enfocado en un sector de una estación de servicio:
 
-_producto_
+- Playa de líquidos
+- Porductos: lubircantes y productos básicos de limpieza vehicular
 
-- id
-- nombre
-- precio
-- stock
+## Movimientos a cubrir
 
-**Estado: en desarrollo**
+- Alta de producto
+- Baja de producto
+- Stock inicial
+- Stock final
+- Precio de producto
 
-**El programa se va a poder ejecutar abriendo 'index.html'**
+## Producto
+
+Modelo inicial del producto:
+
+``js
+{
+id,
+nombre,
+precio,
+stock
+}
+
+## Estado:
+
+en desarrollo
+
+## Cómo ejecutar:
+
+Abrir el archivo `index.html` en el navegador.
