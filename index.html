@@ -1,16 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
-<header>
+
+<head>
     <meta charset="UTF-8">
-    <title>Inventario</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario</title>
     <link rel="stylesheet" href="styles.css">
-</header>
+</head>
 
 <body>
-    <h1>Hola Inventario</h1>
-    <div id="app"></div>
-    <script src="app.js"></script>
+    <header>
+        <h1>Inventario</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Agregar producto</h2>
+
+            <from id="from-producto">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" required />
+
+                <label for="precio">Precio</label>
+                <input type="number" id="precio" name="precio" min="0" step="0.01" required />
+
+                <label for="stock">Stock</label>
+                <input type="number" id="stock" min="0" required />
+
+                <button type="submit">Agregar</button>
+            </from>
+        </section>
+
+        <section>
+            <h2>Inventario</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tabla-inventario">
+                    <!-- Los productos se cargarán desde JavaScript -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="./src/app.js"></script>
 </body>
 
 </html>
