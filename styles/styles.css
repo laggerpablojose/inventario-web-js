@@ -1,0 +1,13 @@
+.stock-bajo {
+    font-weight: bold;
+    color: orange;
+}
+
+.sin-stock {
+    font-weight: bold;
+    color: red;
+}
+
+.sin-stock-row {
+    background: #ffeaea;
+}

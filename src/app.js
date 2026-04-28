@@ -3,6 +3,7 @@ const inputNombre = document.querySelector("#nombre");
 const inputPrecio = document.querySelector("#precio");
 const inputStock = document.querySelector("#stock");
 const tablaProductos = document.querySelector("#tabla-productos");
+const STOCK_MINIMO = 5;
 
 let productos = leerDeLS();
 
@@ -19,18 +20,34 @@ function renderProductos() {
     tablaProductos.innerHTML = "";
 
     productos.forEach((producto) => {
+
+        let claseStock = "";
+
+        if (producto.stock === 0) {
+            claseStock = "sin-stock";
+        } else if (producto.stock <= STOCK_MINIMO) {
+            claseStock = "stock-bajo";
+        }
+
         const fila = document.createElement("tr");
+
+        if (producto.stock === 0) {
+            fila.classList.add("sin-stock-row");
+        }
 
         fila.innerHTML = `
       <td>${producto.nombre}</td>
+
       <td>${producto.precio}</td>
-      <td>
-        ${producto.stock === 0 ? "Sin Stock" : producto.stock}
-        </td>
+
+      <td class="${claseStock}">
+        ${producto.stock === 0 ? "SIN STOCK" : producto.stock}
+      </td>
+
       <td>
         <button onclick="actualizarStock(${producto.id},1)">+</button>
         <button onclick="actualizarStock(${producto.id},-1)">-</button>
-        </td>
+      </td>
     `;
 
         tablaProductos.appendChild(fila);
