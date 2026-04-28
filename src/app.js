@@ -1,33 +1,70 @@
-// Estado inicial
-let productos = [];
+const form = document.querySelector("#form-producto");
+const inputNombre = document.querySelector("#nombre");
+const inputPrecio = document.querySelector("#precio");
+const inputStock = document.querySelector("#stock");
+const tablaProductos = document.querySelector("#tabla-productos");
 
-// Cargar datos desde LocalStorage
+let productos = leerDeLS();
+
 function leerDeLS() {
-
+    const datos = localStorage.getItem("productos");
+    return datos ? JSON.parse(datos) : [];
 }
 
-// Guardar datos en LocalStorage
-function guardarEnLs() {
-
+function guardarEnLS() {
+    localStorage.setItem("productos", JSON.stringify(productos));
 }
 
-// Dibujar productos en la tabla
 function renderProductos() {
+    tablaProductos.innerHTML = "";
 
+    productos.forEach((producto) => {
+        const fila = document.createElement("tr");
+
+        fila.innerHTML = `
+      <td>${producto.nombre}</td>
+      <td>${producto.precio}</td>
+      <td>${producto.stock}</td>
+      <td></td>
+    `;
+
+        tablaProductos.appendChild(fila);
+    });
 }
 
-// Agregar nuevo producto
-function agregarProducto() {
+function agregarProducto(event) {
+    event.preventDefault();
+    console.log("submit detectado");
 
+    const nombre = inputNombre.value.trim();
+    const precio = Number(inputPrecio.value);
+    const stock = Number(inputStock.value);
+
+    if (nombre === "" || precio < 0 || stock < 0) {
+        alert("Datos inválidos");
+        return;
+    }
+
+    const producto = {
+        id: Date.now(),
+        nombre,
+        precio,
+        stock
+    };
+
+    productos.push(producto);
+    guardarEnLS();
+    renderProductos();
+    form.reset();
 }
 
-// Actualizar stock de un producto 
 function actualizarStock() {
 
 }
 
-// Eliminar producto
 function eliminarProducto() {
-    
+
 }
 
+form.addEventListener("submit", agregarProducto);
+renderProductos();
