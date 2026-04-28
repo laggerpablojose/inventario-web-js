@@ -24,8 +24,13 @@ function renderProductos() {
         fila.innerHTML = `
       <td>${producto.nombre}</td>
       <td>${producto.precio}</td>
-      <td>${producto.stock}</td>
-      <td></td>
+      <td>
+        ${producto.stock === 0 ? "Sin Stock" : producto.stock}
+        </td>
+      <td>
+        <button onclick="actualizarStock(${producto.id},1)">+</button>
+        <button onclick="actualizarStock(${producto.id},-1)">-</button>
+        </td>
     `;
 
         tablaProductos.appendChild(fila);
@@ -34,7 +39,6 @@ function renderProductos() {
 
 function agregarProducto(event) {
     event.preventDefault();
-    console.log("submit detectado");
 
     const nombre = inputNombre.value.trim();
     const precio = Number(inputPrecio.value);
@@ -58,8 +62,23 @@ function agregarProducto(event) {
     form.reset();
 }
 
-function actualizarStock() {
+function actualizarStock(id, delta) {
+    const producto = productos.find(
+        p => p.id === id
+    );
 
+    if (!producto) return;
+
+    if (producto.stock + delta < 0) {
+        alert("No puede quedar negarivo");
+        return;
+    }
+
+    producto.stock += delta;
+
+    guardarEnLS();
+
+    renderProductos();
 }
 
 function eliminarProducto() {
