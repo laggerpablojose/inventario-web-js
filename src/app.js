@@ -4,6 +4,7 @@ const inputPrecio = document.querySelector("#precio");
 const inputStock = document.querySelector("#stock");
 const tablaProductos = document.querySelector("#tabla-productos");
 const STOCK_MINIMO = 5;
+const inputBuscar = document.querySelector("#buscar");
 
 let productos = leerDeLS();
 
@@ -18,8 +19,15 @@ function guardarEnLS() {
 
 function renderProductos() {
     tablaProductos.innerHTML = "";
+    const textoBusqueda = inputBuscar.value.toLowerCase();
 
-    productos.forEach((producto) => {
+    const filtrados = productos.filter(p =>
+        p.nombre
+            .toLowerCase()
+            .includes(textoBusqueda)
+    );
+
+    filtrados.forEach((producto) => {
 
         let claseStock = "";
 
@@ -47,7 +55,10 @@ function renderProductos() {
       <td>
         <button onclick="actualizarStock(${producto.id},1)">+</button>
         <button onclick="actualizarStock(${producto.id},-1)">-</button>
-      </td>
+        <button onclick="eliminarProducto(${producto.id})">
+        Eliminar
+        </button>
+        </td>
     `;
 
         tablaProductos.appendChild(fila);
@@ -98,9 +109,24 @@ function actualizarStock(id, delta) {
     renderProductos();
 }
 
-function eliminarProducto() {
+function eliminarProducto(id) {
+
+    if (!confirm("Eliminar producto?")) return;
+
+    productos = productos.filter(
+        producto => producto.id !== id
+    );
+
+    guardarEnLS();
+
+    renderProductos();
 
 }
 
 form.addEventListener("submit", agregarProducto);
 renderProductos();
+
+inputBuscar.addEventListener(
+    "input",
+    renderProductos
+);
