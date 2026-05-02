@@ -42,7 +42,7 @@ Cada producto se gestiona con:
 
 - Visualizar productos en tabla
 - Mostrar existencias actuales
-- Identificar stock bajo (previsto)
+- Identificar stock bajo
 - Actualización inmediata del inventario.
 
 ---
@@ -66,8 +66,9 @@ Tecnologías utilizadas:
 
 - HTML5
 - CSS3
-- JavaScript Vanilla
+- JavaScript (Vanilla)
 - LocalStorage
+- GitHub Pages
 
 Sin frameworks ni backend.
 
@@ -119,23 +120,39 @@ let productos = [];
 
 ## Estado
 
-Proyecto en desarrollo (MVP en construcción).
+Proyecto en desarrollo
 
-Fase actual:
+MVP funcional implementado:
 
-- Estructura HTML inicial
-- Modelo de producto definido
-- Base del CRUD en implementación
+- CRUD básico de productos
+- Persistencia en loclaStorage
+- Gestión de stock en tiempo real
+- Alertas visuales de stock
+- Búsqueda simple
+- Diseño responsive básico
 
-Próximas iteraciones:
+Próximas mejoras:
 
-- Validaciones
-- Indicador de stock bajo
-- Búsqueda / filtros
+- Edición de precio
+- Validaciones más robustas
 - Historial de movimientos
-- Reportes básicos.
+- Exportación de datos
 
-## Cómo ejecutar
+## Demo
+
+[Ver demo online](https://laggerpablojose.github.io/inventario-web-js/)
+
+## Screenshots
+
+### Vista escritorio
+
+![Vista escritorio](docs/screenshots/inventario-desktop.png)
+
+### Vista mobile
+
+![Vista mobile](docs/screenshots/inventario-mobile.png)
+
+## Cómo ejecutar localmente
 
 Clonar repositorio:
 
